@@ -1,0 +1,140 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "redash-server",
+            "image": "redash/redash:7.0.0.b18042",
+            "command": [
+                "server"
+            ],
+            "dependsOn": [
+                {
+                    "containerName": "postgres",
+                    "condition": "START"
+                },
+                {
+                    "containerName": "redis",
+                    "condition": "START"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "PYTHONUNBUFFERED",
+                    "value": "0"
+                },
+                {
+                    "name": "REDASH_LOG_LEVEL",
+                    "value": "INFO"
+                },
+                {
+                    "name": "REDASH_REDIS_URL",
+                    "value": "redis://redis:6379/0"
+                },
+                {
+                    "name": "REDASH_DATABASE_URL",
+                    "value": "postgresql://postgres@postgres/postgres"
+                },
+                {
+                    "name": "REDASH_RATELIMIT_ENABLED",
+                    "value": "false"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/aws/elasticbeanstalk/Test-env-1",
+                    "awslogs-region": "ap-northeast-1",
+                    "awslogs-stream-prefix": "redash-server-"
+                }
+            },
+            "portMappings": [
+                {
+                    "hostPort": 5000,
+                    "containerPort": 5000
+                },
+                {
+                    "hostPort": 5678,
+                    "containerPort": 5678
+                }
+            ],
+            "essential": true,
+            "memory": 512
+        },
+        {
+            "name": "redash-worker",
+            "image": "redash/redash:7.0.0.b18042",
+            "essential": true,
+            "memory": 512,
+            "dependsOn": [
+                {
+                    "containerName": "redash-server",
+                    "condition": "START"
+                }
+            ],
+            "command": [
+                "scheduler"
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/aws/elasticbeanstalk/Test-env-1",
+                    "awslogs-region": "ap-northeast-1",
+                    "awslogs-stream-prefix": "redash-worker-"
+                }
+            },
+            "environment": [
+                {
+                    "name": "PYTHONUNBUFFERED",
+                    "value": "0"
+                },
+                {
+                    "name": "REDASH_LOG_LEVEL",
+                    "value": "INFO"
+                },
+                {
+                    "name": "REDASH_REDIS_URL",
+                    "value": "redis://redis:6379/0"
+                },
+                {
+                    "name": "REDASH_DATABASE_URL",
+                    "value": "postgresql://postgres@postgres/postgres"
+                },
+                {
+                    "name": "REDASH_RATELIMIT_ENABLED",
+                    "value": "false"
+                },
+                {
+                    "name": "QUEUES",
+                    "value": "queries,scheduled_queries,celery,schemas"
+                },
+                {
+                    "name": "WORKERS_COUNT",
+                    "value": "2"
+                }
+            ]
+        },
+        {
+            "name": "redis",
+            "image": "redis:3-alpine",
+            "essential": true,
+            "memory": 256
+        },
+        {
+            "name": "postgres",
+            "image": "postgres:9.5-alpine",
+            "essential": true,
+            "memory": 512,
+            "portMappings": [
+                {
+                    "hostPort": 5432,
+                    "containerPort": 5432
+                }
+            ],
+            "command":[
+              "postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=OFF"  
+            ]
+        }
+    ]
+}
+
+
