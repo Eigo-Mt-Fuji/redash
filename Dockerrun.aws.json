@@ -20,11 +20,8 @@
                    "awslogs-stream-prefix": "nginx-proxy"
                 }
             },
-            "dependsOn": [
-                {
-                    "containerName": "redash-server",
-                    "condition": "START"
-                }
+            "links": [
+                "redash-server:redash-server"
             ],
             "portMappings": [
                 {
