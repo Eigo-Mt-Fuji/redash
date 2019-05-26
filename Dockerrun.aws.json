@@ -34,12 +34,12 @@
                 "options": {
                     "awslogs-group": "/aws/elasticbeanstalk/Test2-env-1/redash",
                     "awslogs-region": "ap-northeast-1",
-                    "awslogs-stream-prefix": "server-"
+                    "awslogs-stream-prefix": "server"
                 }
             },
             "portMappings": [
                 {
-                    "hostPort": 5000,
+                    "hostPort": "0.0.0.0:5000",
                     "containerPort": 5000
                 },
                 {
@@ -69,7 +69,7 @@
                 "options": {
                     "awslogs-group": "/aws/elasticbeanstalk/Test2-env-1/redash",
                     "awslogs-region": "ap-northeast-1",
-                    "awslogs-stream-prefix": "worker-"
+                    "awslogs-stream-prefix": "worker"
                 }
             },
             "environment": [
