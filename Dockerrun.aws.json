@@ -22,7 +22,7 @@
                 },
                 {
                     "name": "REDASH_DATABASE_URL",
-                    "value": "postgresql://postgres@postgres/test-env-1.c6zo0ypnrcfc.ap-northeast-1.rds.amazonaws.com"
+                    "value": "postgresql://postgres:postgres/test-env-1.c6zo0ypnrcfc.ap-northeast-1.rds.amazonaws.com:5432/postgres"
                 },
                 {
                     "name": "REDASH_RATELIMIT_ENABLED",
@@ -87,7 +87,7 @@
                 },
                 {
                     "name": "REDASH_DATABASE_URL",
-                    "value": "postgresql://postgres@postgres/test-env-1.c6zo0ypnrcfc.ap-northeast-1.rds.amazonaws.com"
+                    "value": "postgresql://postgres:postgres/test-env-1.c6zo0ypnrcfc.ap-northeast-1.rds.amazonaws.com:5432/postgres"
                 },
                 {
                     "name": "REDASH_RATELIMIT_ENABLED",
