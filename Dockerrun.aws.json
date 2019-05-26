@@ -1,6 +1,41 @@
 {
     "AWSEBDockerrunVersion": 2,
+    "volumes" : [
+       {
+          "host" : {
+             "sourcePath" : "/opt/nginx-proxy/conf.d"
+          },
+          "name" : "nginxConfVolume"
+       }
+    ],
     "containerDefinitions": [
+        {
+
+           "name":"nginx-proxy",
+           "image":"nginx:stable-alpine",
+           "logConfiguration": {
+               "logDriver": "awslogs",
+               "options": {
+                   "awslogs-group": "/aws/elasticbeanstalk/Test2-env-1/redash",
+                   "awslogs-region": "ap-northeast-1",
+                   "awslogs-stream-prefix": "nginx-proxy"
+                }
+            },
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "essential": true,
+            "memory": 512,
+            "mountPoints": [
+                {
+                   "containerPath": "/etc/nginx/conf.d",
+                   "sourceVolume":"nginxConfVolume"
+                }
+            ]
+        },
         {
             "name": "redash-server",
             "image": "redash/redash:7.0.0.b18042",
