@@ -10,7 +10,6 @@
     ],
     "containerDefinitions": [
         {
-
            "name":"nginx-proxy",
            "image":"nginx:stable-alpine",
            "logConfiguration": {
@@ -21,6 +20,12 @@
                    "awslogs-stream-prefix": "nginx-proxy"
                 }
             },
+            "dependsOn": [
+                {
+                    "containerName": "redash-server",
+                    "condition": "START"
+                }
+            ],
             "portMappings": [
                 {
                     "hostPort": 80,
