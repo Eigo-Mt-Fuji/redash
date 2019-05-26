@@ -39,7 +39,7 @@
             },
             "portMappings": [
                 {
-                    "hostPort": "0.0.0.0:5000",
+                    "hostPort": 5000,
                     "containerPort": 5000
                 },
                 {
