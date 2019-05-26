@@ -58,7 +58,7 @@
             "dependsOn": [
                 {
                     "containerName": "redash-server",
-                    "condition": "HEALTHY"
+                    "condition": "START"
                 }
             ],
             "command": [
