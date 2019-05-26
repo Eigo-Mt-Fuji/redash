@@ -32,9 +32,9 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/aws/elasticbeanstalk/Test2-env-1",
+                    "awslogs-group": "/aws/elasticbeanstalk/Test2-env-1/redash",
                     "awslogs-region": "ap-northeast-1",
-                    "awslogs-stream-prefix": "redash-server-"
+                    "awslogs-stream-prefix": "server-"
                 }
             },
             "portMappings": [
@@ -67,9 +67,9 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/aws/elasticbeanstalk/Test2-env-1",
+                    "awslogs-group": "/aws/elasticbeanstalk/Test2-env-1/redash",
                     "awslogs-region": "ap-northeast-1",
-                    "awslogs-stream-prefix": "redash-worker-"
+                    "awslogs-stream-prefix": "worker-"
                 }
             },
             "environment": [
