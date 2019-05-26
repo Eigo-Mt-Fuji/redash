@@ -7,16 +7,6 @@
             "command": [
                 "server"
             ],
-            "dependsOn": [
-                {
-                    "containerName": "postgres",
-                    "condition": "START"
-                },
-                {
-                    "containerName": "redis",
-                    "condition": "START"
-                }
-            ],
             "environment": [
                 {
                     "name": "PYTHONUNBUFFERED",
@@ -28,11 +18,11 @@
                 },
                 {
                     "name": "REDASH_REDIS_URL",
-                    "value": "redis://redis:6379/0"
+                    "value": "redis://test-env-1.ecok6q.0001.apne1.cache.amazonaws.com:6379/0"
                 },
                 {
                     "name": "REDASH_DATABASE_URL",
-                    "value": "postgresql://postgres@postgres/postgres"
+                    "value": "postgresql://postgres@postgres/test-env-1.c6zo0ypnrcfc.ap-northeast-1.rds.amazonaws.com"
                 },
                 {
                     "name": "REDASH_RATELIMIT_ENABLED",
@@ -42,7 +32,7 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/aws/elasticbeanstalk/Test-env-1",
+                    "awslogs-group": "/aws/elasticbeanstalk/Test2-env-1",
                     "awslogs-region": "ap-northeast-1",
                     "awslogs-stream-prefix": "redash-server-"
                 }
@@ -68,7 +58,7 @@
             "dependsOn": [
                 {
                     "containerName": "redash-server",
-                    "condition": "START"
+                    "condition": "HEALTHY"
                 }
             ],
             "command": [
@@ -77,7 +67,7 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/aws/elasticbeanstalk/Test-env-1",
+                    "awslogs-group": "/aws/elasticbeanstalk/Test2-env-1",
                     "awslogs-region": "ap-northeast-1",
                     "awslogs-stream-prefix": "redash-worker-"
                 }
@@ -93,11 +83,11 @@
                 },
                 {
                     "name": "REDASH_REDIS_URL",
-                    "value": "redis://redis:6379/0"
+                    "value": "redis://test-env-1.ecok6q.0001.apne1.cache.amazonaws.com:6379/0"
                 },
                 {
                     "name": "REDASH_DATABASE_URL",
-                    "value": "postgresql://postgres@postgres/postgres"
+                    "value": "postgresql://postgres@postgres/test-env-1.c6zo0ypnrcfc.ap-northeast-1.rds.amazonaws.com"
                 },
                 {
                     "name": "REDASH_RATELIMIT_ENABLED",
@@ -111,27 +101,6 @@
                     "name": "WORKERS_COUNT",
                     "value": "2"
                 }
-            ]
-        },
-        {
-            "name": "redis",
-            "image": "redis:3-alpine",
-            "essential": true,
-            "memory": 256
-        },
-        {
-            "name": "postgres",
-            "image": "postgres:9.5-alpine",
-            "essential": true,
-            "memory": 512,
-            "portMappings": [
-                {
-                    "hostPort": 5432,
-                    "containerPort": 5432
-                }
-            ],
-            "command":[
-              "postgres -c fsync=off -c full_page_writes=off -c synchronous_commit=OFF"  
             ]
         }
     ]
