@@ -8,7 +8,6 @@
           "name" : "nginxConfVolume"
        }
     ],
-    "executionRoleArn":"arn:aws:iam::201261331815:role/RedashEcsTaskExecutionRole",
     "containerDefinitions": [
         {
            "name":"nginx-proxy",
@@ -63,6 +62,7 @@
                     "value": "false"
                 }
             ],
+            "executionRoleArn":"arn:aws:iam::201261331815:role/RedashEcsTaskExecutionRole",
             "secrets": [
                 {
                   "name": "REDASH_DATABASE_URL",
@@ -138,6 +138,7 @@
                     "value": "2"
                 }
             ],
+            "executionRoleArn":"arn:aws:iam::201261331815:role/RedashEcsTaskExecutionRole",
             "secrets": [
                 {
                   "name": "REDASH_DATABASE_URL",
