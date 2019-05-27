@@ -35,12 +35,16 @@
                 {
                    "containerPath": "/etc/nginx/conf.d",
                    "sourceVolume":"nginxConfVolume"
+                },
+                {
+                   "sourceVolume": "awseb-logs-nginx-proxy",
+                   "containerPath": "/var/log/nginx"
                 }
             ]
         },
         {
             "name": "redash-server",
-            "image": "redash/redash:7.0.0.b18042",
+            "image": "redash/redash:5.0.2.b5486",
             "command": [
                 "server"
             ],
@@ -89,7 +93,7 @@
         },
         {
             "name": "redash-worker",
-            "image": "redash/redash:7.0.0.b18042",
+            "image": "redash/redash:5.0.2.b5486",
             "essential": true,
             "memory": 512,
             "dependsOn": [
