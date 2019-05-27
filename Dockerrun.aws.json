@@ -58,16 +58,18 @@
                     "value": "INFO"
                 },
                 {
-                    "name": "REDASH_REDIS_URL",
-                    "value": "redis://test-env-1.ecok6q.0001.apne1.cache.amazonaws.com:6379/0"
-                },
-                {
-                    "name": "REDASH_DATABASE_URL",
-                    "value": "postgresql://postgres:postgres@test-env-1.c6zo0ypnrcfc.ap-northeast-1.rds.amazonaws.com:5432/postgres"
-                },
-                {
                     "name": "REDASH_RATELIMIT_ENABLED",
                     "value": "false"
+                }
+            ],
+            "secrets": [
+                {
+                  "name": "REDASH_DATABASE_URL",
+                  "valueFrom": "REDASH_DATABASE_URL"
+                },
+                {
+                  "name":"REDASH_REDIS_URL",
+                  "valueFrom":"REDASH_REDIS_URL"
                 }
             ],
             "logConfiguration": {
@@ -123,14 +125,6 @@
                     "value": "INFO"
                 },
                 {
-                    "name": "REDASH_REDIS_URL",
-                    "value": "redis://test-env-1.ecok6q.0001.apne1.cache.amazonaws.com:6379/0"
-                },
-                {
-                    "name": "REDASH_DATABASE_URL",
-                    "value": "postgresql://postgres:postgres@test-env-1.c6zo0ypnrcfc.ap-northeast-1.rds.amazonaws.com:5432/postgres"
-                },
-                {
                     "name": "REDASH_RATELIMIT_ENABLED",
                     "value": "false"
                 },
@@ -142,7 +136,17 @@
                     "name": "WORKERS_COUNT",
                     "value": "2"
                 }
-            ]
+            ],
+            "secrets": [
+                {
+                  "name": "REDASH_DATABASE_URL",
+                  "valueFrom": "REDASH_DATABASE_URL"
+                },
+                {
+                  "name":"REDASH_REDIS_URL",
+                  "valueFrom":"REDASH_REDIS_URL"
+                }
+            ],
         }
     ]
 }
