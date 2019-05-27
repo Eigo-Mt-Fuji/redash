@@ -8,6 +8,7 @@
           "name" : "nginxConfVolume"
        }
     ],
+    "executionRoleArn":"arn:aws:iam::201261331815:role/RedashEcsTaskExecutionRole",
     "containerDefinitions": [
         {
            "name":"nginx-proxy",
