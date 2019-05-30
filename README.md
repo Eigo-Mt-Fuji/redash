@@ -1,6 +1,14 @@
-# README
+# Eigo-Mt-Fuji redash
+
+[![Redash 5.0.2](https://img.shields.io/badge/redash-v5.0.2-ff7964.svg)](https://github.com/getredash/redash)
+
+## 構成図
+* 以下の赤枠部分のIoC
+
+![re:dash architecture](./docs/redash.png)
 
 ## 事前準備
+* [re:dashのdev-guide](https://redash.io/help/open-source/dev-guide/setup)を読んでおく
 
 * AWS CloudWatch Log Groupを作成
 * ElasticBeanstalkアプリケーション作成
