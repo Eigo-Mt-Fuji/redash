@@ -3,7 +3,7 @@
 [![Redash 5.0.2](https://img.shields.io/badge/redash-v5.0.2-ff7964.svg)](https://github.com/getredash/redash)
 
 ## 構成図
-* 以下の赤枠部分のIoC
+* 以下の赤枠部分
 
 ![re:dash architecture](./docs/redash.png)
 
@@ -14,10 +14,13 @@
 * ElasticBeanstalkアプリケーション作成
   * Platform: Multi docker container
   * Single Instance 
-* RDS for Postgres 9.5 
-* デプロイにはawsebcliを利用
+* RDS for Postgres 9.5 を作成
+  * 代替案: Dockerrun.aws.jsonのcontainerDefinitionsにpostgresを追加
+* ElastiCache(Redis) を作成
+  * 代替案: Dockerrun.aws.jsonのcontainerDefinitionsにredisを追加
+* デプロイツール[eb cli](https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html)をセットアップ
 
-## デプロイ
+## デプロイ(Dockerrun.aws.jsonをElasticBeanstalkにデプロイ)
 
 * init (初回) 
 
