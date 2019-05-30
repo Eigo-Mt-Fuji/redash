@@ -16,8 +16,12 @@
   * Single Instance 
 * RDS for Postgres 9.5 を作成
   * 代替案: Dockerrun.aws.jsonのcontainerDefinitionsにpostgresを追加
+  * Dockerrun.aws.jsonの 環境変数 `REDASH_DATABASE_URL` に作成したインスタンス接続情報を適用
+
 * ElastiCache(Redis) を作成
   * 代替案: Dockerrun.aws.jsonのcontainerDefinitionsにredisを追加
+  * Dockerrun.aws.jsonの 環境変数 `REDASH_REDIS_URL` に作成したインスタンス接続情報を適用
+
 * デプロイツール[eb cli](https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html)をセットアップ
 
 ## デプロイ(Dockerrun.aws.jsonをElasticBeanstalkにデプロイ)
