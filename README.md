@@ -19,7 +19,7 @@
 * RDS for Postgres 9.5 を作成
   * 代替案: Dockerrun.aws.jsonのcontainerDefinitionsにpostgresを追加
   * Dockerrun.aws.jsonの 環境変数 `REDASH_DATABASE_URL` に作成したインスタンス接続情報を適用
-
+  * [RedashのDDL](./redash-data.sql)を作成したインスタンスのpostgresスキーマ上にリストア
 * ElastiCache(Redis) を作成
   * 代替案: Dockerrun.aws.jsonのcontainerDefinitionsにredisを追加
   * Dockerrun.aws.jsonの 環境変数 `REDASH_REDIS_URL` に作成したインスタンス接続情報を適用
