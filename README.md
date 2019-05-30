@@ -11,6 +11,8 @@
 * [re:dashのdev-guide](https://redash.io/help/open-source/dev-guide/setup)を読んでおく
 
 * AWS CloudWatch Log Groupを作成
+  * `/aws/elasticbeanstalk/Test2-env-1/redash` と仮定
+  * 変更したい場合は Dockerrun.aws.jsonの `logConfiguration` を置き換え
 * ElasticBeanstalkアプリケーション作成
   * Platform: Multi docker container
   * Single Instance 
