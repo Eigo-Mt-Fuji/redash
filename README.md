@@ -19,7 +19,7 @@
 * RDS for Postgres 9.5 を作成
   * 代替案: Dockerrun.aws.jsonのcontainerDefinitionsにpostgresを追加
   * Dockerrun.aws.jsonの 環境変数 `REDASH_DATABASE_URL` に作成したインスタンス接続情報を適用
-  * [RedashのDDL](./redash-data.sql)を、作成したインスタンスのpostgresスキーマ上にリストア
+  * [RedashのDDL](./resources/redash-data.sql)を、作成したインスタンスのpostgresスキーマ上にリストア
 * ElastiCache(Redis) を作成
   * 代替案: Dockerrun.aws.jsonのcontainerDefinitionsにredisを追加
   * Dockerrun.aws.jsonの 環境変数 `REDASH_REDIS_URL` に作成したインスタンス接続情報を適用
@@ -64,7 +64,7 @@ create schema public;
 # create table in docker container(only at first contact)
 $ docker exec -it {redash server container_id} /bin/bash
 bin/run ./manage.py database create_tables
-$ pg_dump -h127.0.0.1  --port 15432 -Upostgres postgres > redash-data.sql
+$ pg_dump -h127.0.0.1  --port 15432 -Upostgres postgres > resources/redash-data.sql
 ```
 
 * Redashテーブル作成(AWS)
@@ -72,7 +72,7 @@ $ pg_dump -h127.0.0.1  --port 15432 -Upostgres postgres > redash-data.sql
 ```
 # create tables
 redash-db-ssh # connect to postgresql on aws
-redash-db < redash-data.sql # restore
+redash-db < resources/redash-data.sql # restore
 ```
 
 * 参考
