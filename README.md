@@ -14,13 +14,13 @@
 * init (初回) 
 
 ```
-$ eb init --profile sandbox-eigo_fujikawa test2
+$ eb init --profile {profile} test2
 ```
 
 * deploy (test2アプリケーション上のTest2-env-1にデプロイ)
 
 ```
-$ eb deploy --profile sandbox-eigo_fujikawa Test2-env-1
+$ eb deploy --profile {profile} Test2-env-1
 ```
 
 ## 参考
@@ -65,6 +65,3 @@ https://redash.io/help/open-source/dev-guide/setup
 https://stackoverflow.com/questions/32311366/alembic-util-command-error-cant-find-identifier
 https://qiita.com/a-suenami/items/e231adc2e083ef9449f6
 ```
-
-
-
